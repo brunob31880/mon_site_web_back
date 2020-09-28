@@ -1,0 +1,33 @@
+version: "3.3"
+
+services:
+
+  auth-api:
+    container_name: acds-back
+    build: .
+    volumes:
+      - ./:/home/node/app # Le volume du WORKDIR
+      - /home/node/app/node_modules
+    ports:
+      - 3040:3040
+    command: npm start
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    restart: unless-stopped
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+      - ./docker_scripts/:/docker-entrypoint-initdb.d/
+      - ./docker_setup/mongo_seeds/:/seeds/
+
+volumes:
+  mongodb:
+  mongodb_config:

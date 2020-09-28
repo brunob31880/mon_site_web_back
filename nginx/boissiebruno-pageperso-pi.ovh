@@ -1,0 +1,26 @@
+upstream acds_back {
+    server        127.0.0.1:3040;
+}
+
+   
+server {
+    server_name    boissierbruno-pageperso-pi.ovh;
+    listen 3050;
+    #Redirige toutes les requêtes http vers https
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 3060 ssl;
+    ssl_certificate /etc/letsencrypt/live/boissiebruno-pageperso-pi.ovh/cert.pem
+    ssl_certificate_key  /etc/letsencrypt/live/boissiebruno-pageperso-pi.ovh/privkey.pem
+
+    client_max_body_size 50M; # allows file uploads up to 50 megabytes
+    location / {
+        include            proxy_params;
+        proxy_pass        http://acds_back;
+        proxy_set_header    X-Real-IP  $remote_addr;
+    }
+
+
+

@@ -1,0 +1,16 @@
+upstream acds_back {
+    server        127.0.0.1:3040;
+}
+
+server {
+    server_name    boissierbruno-pageperso-pi.ovh;
+    client_max_body_size 50M; # allows file uploads up to 50 megabytes
+    location / {
+        include            proxy_params;
+        proxy_pass        http://acds_back;
+        proxy_set_header    X-Real-IP  $remote_addr;
+    }
+    listen 3050;
+}
+
+
