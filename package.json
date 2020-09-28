@@ -1,7 +1,7 @@
 {
-  "name": "Acds-Back",
+  "name": "Mon-site-web-Back",
   "version": "0.0.1",
-  "description": "Demo Users API with MongoDB for DSNA/DTI JS workshops",
+  "description": "",
   "type": "module",
   "main": "src/server.js",
   "repository": {
