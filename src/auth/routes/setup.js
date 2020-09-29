@@ -17,7 +17,7 @@ const dir = (import.meta && import.meta.url)
 /**
  * Register routes for Authentication API
  *
- * @author Luc Thibault <luc@suhali.net>
+ * @author Bruno Boissie
  * @copyright (c) 2020, DSNA/DTI. All rights reserved.
  *
  * @param {Object}	app		Express instance to register routes with

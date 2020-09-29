@@ -14,31 +14,22 @@ const {Schema, model} = mongoose;
  * @copyright (c) 2020, DSNA/DTI. All rights reserved.
  */
 const userSchema = new Schema({
-	firstName: {
+	category: {
 		type:		String,
-		required:	"Please provide a user first name"
+		required:	"Please provide a category"
 	},
-	lastName: {
+	contenu: {
 		type:		String,
-		required:	"Please provide a user last name"
+		required:	"Please provide a contenu"
 	},
-	email: {
+	filecontenu: {
 		type:		String,
-		unique:		true,
-		required:	"Please provide a user email address"
-	},
-	password: {
-		type:		String,
-		required:	"Please provide a user password"
-	},
-	level: {
-		type:		String,
-		default:	userLevels.BASIC
+		required:	"Please provide a file contenu"
 	}
 });
 
 // Index on email field
-userSchema.index({ email: 1 });
+userSchema.index({ category: 1 });
 
 // Ensure virtual fields are serialised.
 userSchema.set("toJSON", { virtuals: true });
@@ -52,10 +43,7 @@ userSchema.set("toJSON", { virtuals: true });
 userSchema.pre("save", function saveHook (next) {
 	if (this.password
 			&& this.isModified("password")
-			&& this.password.length >= config.minPwdLength) {
-		const salt = genSalt(16);
-		const hash = genHash(this.password, salt);
-		this.password = `${salt}$${hash}`;
+			&& this.contenu.length >= config.minContenuLength) {
 	}
 	next();
 });
@@ -63,7 +51,7 @@ userSchema.pre("save", function saveHook (next) {
 /*
  * Create and export a model for Users data
  */
-export const UserModel = model("Users", userSchema);
+export const UserModel = model("Articles", userSchema);
 
 
 /*
@@ -76,13 +64,12 @@ export const create = data => {
 	return user.save();
 };
 
-export const findByEmail = async email => UserModel.find({email});
+export const findByCategory = async category => UserModel.find({category});
 export const findAll= async () => UserModel.find({});
 export const findById = async id => UserModel.findById(id);
 
 
 export const patchById = async (id, data) => {
-
 	// UserModel.findOneAndUpdate({_id: id}, data);
 	const user = await UserModel.findById(id);
 	Object.keys(data).forEach( k => {
