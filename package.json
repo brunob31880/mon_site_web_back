@@ -1,7 +1,7 @@
 {
   "name": "Mon-site-web-Back",
   "version": "0.0.1",
-  "description": "Back End serveur web",
+  "description": "Back End serveur Web",
   "type": "module",
   "main": "src/server.js",
   "repository": {
@@ -39,7 +39,7 @@
     "dev": "DEBUG=* npm run launch",
     "start": "NODE_ENV=production npm run launch"
   },
-  "author": "DSNA/DTI, Luc Thibault",
+  "author": "Boissie bruno",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",

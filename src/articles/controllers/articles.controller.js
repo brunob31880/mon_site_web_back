@@ -26,7 +26,7 @@ import {list, create, findById, patchById, removeById}
  * @return {void}
  */
 export const listUsers = async (req, res) => {
-	console.log("[user.controller] list users");
+	console.log("[articles.controller] list users");
 	try {
 		const result = await list();
 		res.status(200);
@@ -43,16 +43,16 @@ export const listUsers = async (req, res) => {
  * Final handler for POST <i>/users/</i> API route.
  * Create and store new User.
  *
- * @name insertUser
- * @author Luc Thibault <luc@suhali.net>
+ * @name insertArticle
+ * @author Bruno Boissie 
  * @copyright (c) 2020, DSNA/DTI. All rights reserved.
  *
  * @param {Object}		req		Express request object
  * @param {Object}		res		Express response object
  * @return {void}
  */
-export const insertUser = async (req, res) => {
-	console.log("[user.controller] inserting user "+JSON.stringify(req.body));
+export const insertArticle = async (req, res) => {
+	console.log("[articles.controller] inserting article "+JSON.stringify(req.body));
 	
 	// Default user permission level
 	try {
@@ -70,16 +70,16 @@ export const insertUser = async (req, res) => {
  * Final handler for GET <i>/users/:userId</i> API route.
  * Retrieve User data by ID.
  *
- * @name getUser
- * @author Luc Thibault <luc@suhali.net>
+ * @name getArticle
+ * @author Bruno Boissie 
  * @copyright (c) 2020, DSNA/DTI. All rights reserved.
  *
  * @param {Object}		req		Express request object
  * @param {Object}		res		Express response object
  * @return {void}
  */
-export const getUser = async (req, res) => {
-	console.log("[user.controller] get user "+req.params.userId);
+export const getArticle = async (req, res) => {
+	console.log("[articles.controller] get article "+req.params.userId);
 	try {
 		const result = await findById(req.params.userId);
 		res.status(200).send(result);
@@ -95,16 +95,16 @@ export const getUser = async (req, res) => {
  * Final handler for PATCH <i>/users/:userId</i> API route.
  * Update User data.
  *
- * @name patchUser
- * @author Luc Thibault <luc@suhali.net>
+ * @name patchArticle
+ * @author Bruno Boissie
  * @copyright (c) 2020, DSNA/DTI. All rights reserved.
  *
  * @param {Object}		req		Express request object
  * @param {Object}		res		Express response object
  * @return {void}
  */
-export const patchUser = async (req, res) => {
-	console.log("[user.controller] patch user "+JSON.stringify(req.body));
+export const patchArticle = async (req, res) => {
+	console.log("[articles.controller] patch article "+JSON.stringify(req.body));
 	if (req.body.level) {
 		// Users are not allowed to change their permission level, AND SHOULD NOT TRY TO !
 		delete req.body.level;
@@ -124,16 +124,16 @@ export const patchUser = async (req, res) => {
  * Final handler for DELETE <i>/users/:userId</i> API route.
  * Remove User from storage.
  *
- * @name removeUser
- * @author Luc Thibault <luc@suhali.net>
+ * @name removeArticle
+ * @author Bruno Boissie
  * @copyright (c) 2020, DSNA/DTI. All rights reserved.
  *
  * @param {Object}		req		Express request object
  * @param {Object}		res		Express response object
  * @return {void}
  */
-export const removeUser = async (req, res) => {
-	console.log("[user.controller] remove user "+req.params.userId);
+export const removeArticle = async (req, res) => {
+	console.log("[articles.controller] remove article "+req.params.userId);
 	try {
 		const result = await removeById(req.params.userId);
 		res.status(204);
