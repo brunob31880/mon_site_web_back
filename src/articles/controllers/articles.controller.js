@@ -25,7 +25,7 @@ import {list, create, findById, patchById, removeById}
  * @param {Object}		res		Express response object
  * @return {void}
  */
-export const listUsers = async (req, res) => {
+export const listArticles = async (req, res) => {
 	console.log("[articles.controller] list users");
 	try {
 		const result = await list();

@@ -1,7 +1,7 @@
 export const config = {
 	appName:		"MON SITE WEB BACK",
-	dbName:			"MON-SITE-WEB-BACK",
-	mongHost: "mongo",
+	dbName:			"DB",
+	mongHost: "localhost",
 	environment:	process.env.NODE_ENV || "development",
 	httpPort:		process.env.HTTP_PORT || 3040,
 	httpsPort:		process.env.HTTPS_PORT || 3030,

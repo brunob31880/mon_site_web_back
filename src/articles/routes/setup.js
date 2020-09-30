@@ -1,10 +1,7 @@
 
-import {listUsers, insertUser, getUser, patchUser, removeUser}
-	from "../controllers/articles.controller";
-import {validTokenNeeded}
-	from "../../auth/middlewares/auth.validation";
-import {minLevelRequired, allowSameUserOrAdmin}
-	from "../../auth/middlewares/auth.permissions";
+import {listArticles, insertArticle, getArticle, patchArticle, removeArticle} from "../controllers/articles.controller";
+import {validTokenNeeded} from "../../auth/middlewares/auth.validation";
+import {minLevelRequired, allowSameUserOrAdmin} from "../../auth/middlewares/auth.permissions";
 import {userLevels} from "../../../.config/base";
 
 
@@ -25,10 +22,10 @@ export default app => {
 		.get([						// Authenticated manager accounts may list users
 			validTokenNeeded,
 			minLevelRequired(ADMIN),
-			listUsers
+			listArticles
 		])
 		.post([						// Anyone may create a user account
-			insertUser
+			insertArticle
 		]);
 
 	app.route("/articles/:articleId")
@@ -36,18 +33,18 @@ export default app => {
 			validTokenNeeded,
 			minLevelRequired(ADMIN),
 			allowSameUserOrAdmin,
-			getUser
+			getArticle
 		])
 		.patch([					// Authenticated users may modify their own account (or any administrator)
 			validTokenNeeded,
 			minLevelRequired(ADMIN),
 			allowSameUserOrAdmin,
-			patchUser
+			patchArticle
 		])
 		.delete([					// Only administrators may delete user accounts
 			validTokenNeeded,
 			minLevelRequired(ADMIN),
-			removeUser
+			removeArticle
 		]);
 
 };

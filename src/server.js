@@ -10,6 +10,7 @@ import fs from "fs";
 
 import authRoutes from "./auth/routes/setup";
 import userRoutes from "./users/routes/setup";
+import articleRoutes from "./articles/routes/setup";
 
 import { create,removeById, findByEmail, findAll } from "./users/models/users.model";
 import { config } from "../.config/base";
@@ -51,6 +52,8 @@ io.origins('*:*');
 // Register the routes
 authRoutes(app);
 userRoutes(app);
+articleRoutes(app);
+
 console.log("Server version " + version);
 // Startup services listening
 // Handle port listening services
