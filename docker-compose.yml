@@ -3,13 +3,13 @@ version: "3.3"
 services:
 
   auth-api:
-    container_name: acds-back
+    container_name: site-back
     build: .
     volumes:
       - ./:/home/node/app # Le volume du WORKDIR
       - /home/node/app/node_modules
     ports:
-      - 3040:3040
+      - 3050:3050
     command: npm start
     depends_on:
       - mongo
